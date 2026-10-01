@@ -5,7 +5,7 @@
     <classes>
       <class name="com.infosys.Learners">
         <methods>
-          <include name="testGetAllCourses"/>
+          <include name="testCreateLearnerssUsingExternalFile"/>
         </methods>
       </class> <!-- com.infosys.Learners -->
     </classes>
