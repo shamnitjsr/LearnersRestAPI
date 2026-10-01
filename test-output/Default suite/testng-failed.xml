@@ -5,7 +5,7 @@
     <classes>
       <class name="com.infosys.Learners">
         <methods>
-          <include name="testCreateLearnerssUsingExternalFile"/>
+          <include name="testPatchCoursesUsingHashMap"/>
         </methods>
       </class> <!-- com.infosys.Learners -->
     </classes>
