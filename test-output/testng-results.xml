@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-10-02T01:28:29 IST" name="Learners Suite" finished-at="2026-10-02T01:29:16 IST" duration-ms="46269">
+    <groups>
+    </groups>
+    <test started-at="2026-10-02T01:28:29 IST" name="Test" finished-at="2026-10-02T01:29:16 IST" duration-ms="46269">
+      <class name="com.infosys.Learners">
+        <test-method signature="testGetAllCourses()[pri:1, instance:com.infosys.Learners@6a8658ff]" started-at="2026-10-02T01:28:29 IST" name="testGetAllCourses" finished-at="2026-10-02T01:29:16 IST" duration-ms="46179" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetAllCourses -->
+      </class> <!-- com.infosys.Learners -->
+    </test> <!-- Test -->
+  </suite> <!-- Learners Suite -->
+</testng-results>
