@@ -78,12 +78,12 @@ cucumber.json
 
 Allure reports
 
-allure-results/
+*allure-results/
 allure-report/
 
 TestNG
 
-test-output/
+*test-output/
 
 Environment / local configuration
 
