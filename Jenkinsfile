@@ -4,7 +4,7 @@ pipeline {
     tools {
         jdk 'MyJava'        // Configured under Manage Jenkins > Tools
         maven 'MyMaven'    // Configured under Manage Jenkins > Tools
-        allure 'MyAllure'  // Configured under Manage Jenkins > Tools (Allure Commandline)
+        //allure 'MyAllure'  // Configured under Manage Jenkins > Tools (Allure Commandline)
     }
 
     options {
@@ -47,31 +47,23 @@ pipeline {
         }
 
         stage('Report') {
-            steps {
-                echo 'Publishing API automation test results...'
+        steps {
+            echo 'Generating and publishing Allure Report via Maven...'
+            
+            // Generate Allure HTML report using Maven plugin
+            bat 'mvn allure:report'
 
-                // 1. Publish standard JUnit results in Jenkins
-                junit(
-                    testResults: '**/target/surefire-reports/*.xml',
-                    allowEmptyResults: true
-                )
-
-                // 2. Generate and publish Allure Report
-                allure([
-                    includeProperties: false,
-                    jdk: '',
-                    properties: [],
-                    reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'target/allure-results']]
-                ])
-
-                // 3. Archive raw reports as artifacts
-                archiveArtifacts(
-                    artifacts: '**/target/surefire-reports/**/*',
-                    allowEmptyArchive: true
-                )
-            }
+            // Publish generated HTML site
+            publishHTML(target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'target/site/allure-maven-plugin',
+                reportFiles: 'index.html',
+                reportName: 'Allure Report'
+            ])
         }
+    }
     }
 
     post {
