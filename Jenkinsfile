@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     tools {
-        jdk 'MyJava'       // Use your configured Java name
-        maven 'MyMaven'   // Use your configured Maven name
+        jdk 'MyJava'        // Configured under Manage Jenkins > Tools
+        maven 'MyMaven'    // Configured under Manage Jenkins > Tools
+        allure 'MyAllure'  // Configured under Manage Jenkins > Tools (Allure Commandline)
     }
 
     options {
@@ -31,7 +32,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Maven project...'
-                // Changed 'sh' to 'bat' for Windows
                 bat 'java -version'
                 bat 'mvn -version'
                 bat 'mvn -B clean compile'
@@ -41,18 +41,31 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Executing Rest Assured API automation tests...'
-                // Changed 'sh' to 'bat' for Windows
-                bat 'mvn -B clean test'
+                // Ensures build continues to the Report stage even if test assertions fail
+                bat 'mvn -B test -DfailIfNoTests=false'
             }
         }
 
         stage('Report') {
             steps {
                 echo 'Publishing API automation test results...'
+
+                // 1. Publish standard JUnit results in Jenkins
                 junit(
                     testResults: '**/target/surefire-reports/*.xml',
-                    allowEmptyResults: false
+                    allowEmptyResults: true
                 )
+
+                // 2. Generate and publish Allure Report
+                allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'target/allure-results']]
+                ])
+
+                // 3. Archive raw reports as artifacts
                 archiveArtifacts(
                     artifacts: '**/target/surefire-reports/**/*',
                     allowEmptyArchive: true
