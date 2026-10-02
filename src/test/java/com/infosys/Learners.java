@@ -72,7 +72,7 @@ public class Learners {
 			.extract().jsonPath().getString("id");
 			System.out.println(id);
 			
-			System.out.println("*********** Started:Test Case: Create Learners Using External File **********");
+			System.out.println("*********** Ended:Test Case: Create Learners Using External File **********");
 		
 		
 	}
@@ -111,8 +111,8 @@ public class Learners {
 		
 		HashMap<String, Object> requestBody = new HashMap<>();
 		
-		requestBody.put("name", "Pankaj");
-		requestBody.put("email", "pankaj@gmail.com");
+		requestBody.put("name", "Rohan");
+		requestBody.put("email", "Rohan@gmail.com");
 		
 		System.out.println("*********** Started:Test Case: Patch Learners Using HashMap**********");
 		
