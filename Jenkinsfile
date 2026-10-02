@@ -6,8 +6,8 @@ pipeline {
     // Maven and JDK must be configured in:
     // Manage Jenkins -> Tools
     tools {
-        jdk 'JDK-21'
-        maven 'Maven-3.10'
+        jdk 'MyJava'
+        maven 'MyMaven'
     }
 
     options {
