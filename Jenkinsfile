@@ -2,9 +2,8 @@ pipeline {
     agent any
 
     tools {
-        jdk 'MyJava'        // Configured under Manage Jenkins > Tools
-        maven 'MyMaven'    // Configured under Manage Jenkins > Tools
-        //allure 'MyAllure'  // Configured under Manage Jenkins > Tools (Allure Commandline)
+        jdk 'MyJava'       // Use your configured Java name
+        maven 'MyMaven'   // Use your configured Maven name
     }
 
     options {
@@ -32,6 +31,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Maven project...'
+                // Changed 'sh' to 'bat' for Windows
                 bat 'java -version'
                 bat 'mvn -version'
                 bat 'mvn -B clean compile'
@@ -41,29 +41,24 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Executing Rest Assured API automation tests...'
-                // Ensures build continues to the Report stage even if test assertions fail
-                bat 'mvn -B test -DfailIfNoTests=false'
+                // Changed 'sh' to 'bat' for Windows
+                bat 'mvn -B clean test'
             }
         }
 
         stage('Report') {
-        steps {
-            echo 'Generating and publishing Allure Report via Maven...'
-            
-            // Generate Allure HTML report using Maven plugin
-            bat 'mvn allure:report'
-
-            // Publish generated HTML site
-            publishHTML(target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'target/site/allure-maven-plugin',
-                reportFiles: 'index.html',
-                reportName: 'Allure Report'
-            ])
+            steps {
+                echo 'Publishing API automation test results...'
+                junit(
+                    testResults: '**/target/surefire-reports/*.xml',
+                    allowEmptyResults: false
+                )
+                archiveArtifacts(
+                    artifacts: '**/target/surefire-reports/**/*',
+                    allowEmptyArchive: true
+                )
+            }
         }
-    }
     }
 
     post {
