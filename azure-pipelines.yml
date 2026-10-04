@@ -13,7 +13,7 @@ variables:
   BRANCH: 'main'
 
 # Set build timeout (30 minutes)
-timeoutInMinutes: 30
+#timeoutInMinutes: 30
 
 stages:
   - stage: Checkout_Build_Test
