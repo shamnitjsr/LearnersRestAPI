@@ -90,7 +90,7 @@ public class Learners {
 		
 	}
 	
-	@Test(priority = 3)
+	@Test(priority = 4)
 	public void testGetLearnersById() {
 		
 		System.out.println("*********** Started:Test Case: Get Learners By ID **********");
@@ -108,7 +108,7 @@ public class Learners {
 		
 	}
 	
-	@Test(priority = 4)
+	@Test(priority = 5)
 	public void testPutLearnersUsingExternalFile() throws FileNotFoundException {
 		
         System.out.println("*********** Started:Test Case: Put Learners Using External File **********");
@@ -137,7 +137,7 @@ public class Learners {
 		
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 6)
 	public void testPatchCoursesUsingHashMap() {
 		
 		HashMap<String, Object> requestBody = new HashMap<>();
@@ -162,7 +162,7 @@ public class Learners {
 		
 	}
 	
-	@Test(priority = 6)
+	@Test(priority = 7)
 	public void testDeletelearnersById() {
 		
 		System.out.println("*********** Started:Test Case: Delete Learners Using HashMap **********");
@@ -179,7 +179,7 @@ public class Learners {
 		
 	}
 	
-	@Test(priority = 7)
+	@Test(priority = 8)
 	public void testGetAllLearnersWithoutAuth() {
 		
 		System.out.println("*********** Started:Test Case: Get All Learners Without Auth **********");
