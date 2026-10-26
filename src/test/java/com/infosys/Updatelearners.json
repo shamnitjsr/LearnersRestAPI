@@ -1,7 +1,7 @@
 {
-  "name": "Ashrar Khan01",
-  "email": "ashrarakhan01@gmail.com",
-  "courseId": 01,
+  "name": "John Doe",
+  "email": "john@gmail.com",
+  "courseId": 02,
   "status": "enrolled",
-  "progress": 01
+  "progress": 02
 }
