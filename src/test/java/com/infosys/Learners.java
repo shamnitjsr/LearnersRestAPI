@@ -2,7 +2,6 @@ package com.infosys;
 
 import static io.restassured.RestAssured.given;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
@@ -121,9 +120,13 @@ public class Learners {
 		
         System.out.println("*********** Started:Test Case: Put Learners Using External File **********");
 		
-		File file = new File("C:\\Users\\SHAMBHU KUMAR\\git\\LearnersRestAPI\\src\\test\\java\\com\\infosys\\Updatelearners.json");
-		FileReader fileReader = new FileReader(file);
-		JSONTokener jsonTokener = new JSONTokener(fileReader);
+		//File file = new File("C:\\Users\\SHAMBHU KUMAR\\git\\LearnersRestAPI\\src\\test\\java\\com\\infosys\\Updatelearners.json");
+        
+        FileReader file = new FileReader("src/test/resources/Updatelearners.json");
+		
+		
+		//FileReader fileReader = new FileReader(file);
+		JSONTokener jsonTokener = new JSONTokener(file);
 		JSONObject requestBody = new JSONObject(jsonTokener);
 		
 		given()
