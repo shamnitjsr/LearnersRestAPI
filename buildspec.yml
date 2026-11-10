@@ -1,0 +1,45 @@
+version: 0.2
+
+env:
+  variables:
+    REPO_URL: "https://github.com/shamnitjsr/LearnersRestAPI.git"
+    BRANCH: "main"
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11          # JDK 11
+    commands:
+      - echo Setting up JDK and Maven...
+      - java -version
+      - mvn -version
+
+  build:
+    commands:
+      - echo Building Maven project...
+      - mvn -B clean compile
+      - echo Executing Rest Assured API automation tests...
+      - mvn -B clean test
+
+  post_build:
+    commands:
+      - |
+        if [ "$CODEBUILD_BUILD_SUCCEEDING" = "1" ]; then
+          echo "API automation execution completed successfully."
+        else
+          echo "API automation execution FAILED. Check the test and report sections."
+        fi
+      - echo "API automation pipeline execution completed."
+
+# Publish test results (runs even if tests fail)
+reports:
+  api-test-report:
+    files:
+      - '**/target/surefire-reports/*.xml'
+    file-format: JUNITXML
+
+# Archive surefire reports
+artifacts:
+  files:
+    - '**/target/surefire-reports/**/*'
+  name: surefire-reports

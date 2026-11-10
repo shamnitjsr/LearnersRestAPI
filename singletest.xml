@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SingleTestSuite">
+  <test name="OneTest">
+    <classes>
+      <class name="com.infosys.Learners">
+        <methods>
+          <include name="testGetAllLearners"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+</suite>

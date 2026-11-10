@@ -12,13 +12,14 @@ import org.json.JSONTokener;
 import org.testng.annotations.Test;
 
 public class Learners {
-	//Shambhu Kumar-10112026
+	//Shambhu Kumar-10112026-1st
+	//Shambhu Kumar-10112026-2st
 	
 	
 	
 	String id = "";
 	
-	@Test(priority = 1)
+	@Test(priority = 1 , groups={"TC001_GetAllLearners","regression","sanity"})
 	public void testGetAllLearners() {
 		
 		System.out.println("*********** Welcome In Testing World**********");
@@ -27,6 +28,7 @@ public class Learners {
 		System.out.println("*********** Started:Test Case: Get All Learners **********");
 		
 		given()
+			.log().body()
 			.auth().basic("api_learner", "Lebyy@Api1")
 			
 		.when()
@@ -54,12 +56,15 @@ public class Learners {
 		JSONObject requestBody = new JSONObject(jsonTokener);
 		
 		id = given()
+			.log().all()
 			.auth().basic("api_learner", "Lebyy@Api1")
 			.header("Content-Type", "application/json")
 			.body(requestBody.toString())
+			
 		.when()
 			.post("https://lebyy.com/practice/api/learners")
 		.then() 
+		    .log().all()
 			.statusCode(201)
 			.log().body()
 			.extract().jsonPath().getString("id");
@@ -120,6 +125,7 @@ public class Learners {
 		JSONObject requestBody = new JSONObject(jsonTokener);
 		
 		given()
+			.log().all()
 			.auth().basic("api_learner", "Lebyy@Api1")
 			.header("Content-Type", "application/json")
 			.pathParam("id", id)
@@ -128,6 +134,7 @@ public class Learners {
 		.when()
 			.put("https://lebyy.com/practice/api/learners/{id}")
 		.then() 
+			.log().all()
 			.statusCode(200)
 			.log().body()
 			.extract().jsonPath().getString("id");
@@ -186,6 +193,7 @@ public class Learners {
 		System.out.println("*********** Started:Test Case: Get All Learners Without Auth **********");
 		
 		given()
+			.log().body()
 			//.auth().basic("api_learner", "Lebyy@Api1")
 			
 		.when()
