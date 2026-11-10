@@ -1,11 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="0" passed="0" failed="0" skipped="0">
+<testng-results ignored="0" total="8" passed="8" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-11-10T19:29:28 IST" name="SingleTestSuite" finished-at="2026-11-10T19:29:28 IST" duration-ms="12">
+  <suite started-at="2026-11-10T20:13:17 IST" name="Default suite" finished-at="2026-11-10T20:13:31 IST" duration-ms="14177">
     <groups>
+      <group name="TC001_GetAllLearners">
+        <method signature="Learners.testGetAllLearners()[pri:1, instance:com.infosys.Learners@30f842ca]" name="testGetAllLearners" class="com.infosys.Learners"/>
+      </group> <!-- TC001_GetAllLearners -->
+      <group name="regression">
+        <method signature="Learners.testGetAllLearners()[pri:1, instance:com.infosys.Learners@30f842ca]" name="testGetAllLearners" class="com.infosys.Learners"/>
+      </group> <!-- regression -->
+      <group name="sanity">
+        <method signature="Learners.testGetAllLearners()[pri:1, instance:com.infosys.Learners@30f842ca]" name="testGetAllLearners" class="com.infosys.Learners"/>
+      </group> <!-- sanity -->
     </groups>
-    <test started-at="2026-11-10T19:29:28 IST" name="OneTest" finished-at="2026-11-10T19:29:28 IST" duration-ms="12">
-    </test> <!-- OneTest -->
-  </suite> <!-- SingleTestSuite -->
+    <test started-at="2026-11-10T20:13:17 IST" name="Default test" finished-at="2026-11-10T20:13:31 IST" duration-ms="14177">
+      <class name="com.infosys.Learners">
+        <test-method signature="testGetAllLearners()[pri:1, instance:com.infosys.Learners@30f842ca]" started-at="2026-11-10T20:13:17 IST" name="testGetAllLearners" finished-at="2026-11-10T20:13:21 IST" duration-ms="4147" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetAllLearners -->
+        <test-method signature="testCreateLearnerssUsingExternalFile()[pri:2, instance:com.infosys.Learners@30f842ca]" started-at="2026-11-10T20:13:21 IST" name="testCreateLearnerssUsingExternalFile" finished-at="2026-11-10T20:13:24 IST" duration-ms="2188" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateLearnerssUsingExternalFile -->
+        <test-method signature="testGetAllLearnersAfterNewCreation()[pri:3, instance:com.infosys.Learners@30f842ca]" started-at="2026-11-10T20:13:24 IST" name="testGetAllLearnersAfterNewCreation" finished-at="2026-11-10T20:13:25 IST" duration-ms="1437" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetAllLearnersAfterNewCreation -->
+        <test-method signature="testGetLearnersById()[pri:4, instance:com.infosys.Learners@30f842ca]" started-at="2026-11-10T20:13:25 IST" name="testGetLearnersById" finished-at="2026-11-10T20:13:27 IST" duration-ms="1442" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetLearnersById -->
+        <test-method signature="testPutLearnersUsingExternalFile()[pri:5, instance:com.infosys.Learners@30f842ca]" started-at="2026-11-10T20:13:27 IST" name="testPutLearnersUsingExternalFile" finished-at="2026-11-10T20:13:28 IST" duration-ms="1190" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testPutLearnersUsingExternalFile -->
+        <test-method signature="testPatchCoursesUsingHashMap()[pri:6, instance:com.infosys.Learners@30f842ca]" started-at="2026-11-10T20:13:28 IST" name="testPatchCoursesUsingHashMap" finished-at="2026-11-10T20:13:29 IST" duration-ms="1285" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testPatchCoursesUsingHashMap -->
+        <test-method signature="testDeletelearnersById()[pri:7, instance:com.infosys.Learners@30f842ca]" started-at="2026-11-10T20:13:29 IST" name="testDeletelearnersById" finished-at="2026-11-10T20:13:30 IST" duration-ms="1302" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDeletelearnersById -->
+        <test-method signature="testGetAllLearnersWithoutAuth()[pri:8, instance:com.infosys.Learners@30f842ca]" started-at="2026-11-10T20:13:30 IST" name="testGetAllLearnersWithoutAuth" finished-at="2026-11-10T20:13:31 IST" duration-ms="972" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetAllLearnersWithoutAuth -->
+      </class> <!-- com.infosys.Learners -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

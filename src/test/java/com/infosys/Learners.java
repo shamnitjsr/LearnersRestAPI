@@ -48,7 +48,9 @@ public class Learners {
 		System.out.println("*********** Started:Test Case: Create Learners Using External File **********");
 		
 		//File file = new File("D:\\ProjectWorkspace\\LearnerRestAPI\\src\\test\\java\\com\\infosys\\learners.json");
-		FileReader fileReader = new FileReader("C:\\Users\\SHAMBHU KUMAR\\git\\LearnersRestAPI\\src\\test\\java\\com\\infosys\\learners.json");
+		//FileReader fileReader = new FileReader("C:\\Users\\SHAMBHU KUMAR\\git\\LearnersRestAPI\\src\\test\\java\\com\\infosys\\learners.json");
+		
+		FileReader fileReader = new FileReader("src/test/resources/learners.json");
 		
 		//FileReader fileReader = new FileReader(file);
 		
