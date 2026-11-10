@@ -8,7 +8,7 @@
     <classes>
       <class name="com.infosys.Learners">
         <methods>
-          <include name="testGetAllLearnersWithoutAuth"/>
+          <include name="testPatchCoursesUsingHashMap"/>
         </methods>
       </class> <!-- com.infosys.Learners -->
     </classes>
