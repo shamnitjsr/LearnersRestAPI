@@ -1,0 +1,71 @@
+substitutions:
+  _REPO_URL: "https://github.com/shamnitjsr/LearnersRestAPI.git"
+  _BRANCH: "main"
+  _REPORT_BUCKET: "YOUR_BUCKET_NAME"   # GCS bucket for reports
+
+steps:
+  # 1. Clone the repo (not needed if you use a Cloud Build trigger on the repo)
+  - id: 'clone'
+    name: 'gcr.io/cloud-builders/git'
+    args: ['clone', '--branch', '${_BRANCH}', '--depth', '1', '${_REPO_URL}', 'repo']
+
+  # 2. Set up JDK 11 + Maven (the image provides both) and compile
+  - id: 'build'
+    name: 'maven:3.9-eclipse-temurin-11'
+    dir: 'repo'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Setting up JDK and Maven..."
+        java -version
+        mvn -version
+        echo "Building Maven project..."
+        mvn -B clean compile
+
+  # 3. Run Rest Assured tests. Record the exit code instead of failing
+  #    immediately, so the report upload step still runs.
+  - id: 'test'
+    name: 'maven:3.9-eclipse-temurin-11'
+    dir: 'repo'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Executing Rest Assured API automation tests..."
+        mvn -B clean test
+        echo $$? > /workspace/test_exit_code
+        exit 0
+
+  # 4. Archive Surefire reports to GCS (runs even if tests failed)
+  - id: 'publish-reports'
+    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud storage cp --recursive \
+          'repo/**/target/surefire-reports/*' \
+          gs://${_REPORT_BUCKET}/surefire-reports/$BUILD_ID/ \
+          || echo "No reports found to upload"
+
+  # 5. Final status (equivalent of CODEBUILD_BUILD_SUCCEEDING check)
+  - id: 'final-status'
+    name: 'bash'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        RC=$$(cat /workspace/test_exit_code)
+        if [ "$$RC" = "0" ]; then
+          echo "API automation execution completed successfully."
+        else
+          echo "API automation execution FAILED. Check the reports in gs://${_REPORT_BUCKET}/surefire-reports/$BUILD_ID/"
+        fi
+        echo "API automation pipeline execution completed."
+        exit $$RC
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+timeout: 1800s

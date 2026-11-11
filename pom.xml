@@ -48,10 +48,17 @@
 		<jackson-databind-version>2.18.2</jackson-databind-version>
 		<allure-testng-version>2.29.0</allure-testng-version>
 		<extentreports-version>5.1.2</extentreports-version>
+		<slf4j-simple-version>1.7.36</slf4j-simple-version>
 	</properties>
 
 
 	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j-simple-version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
